@@ -29,16 +29,20 @@ export const getAllVideos = createAsyncThunk(
                 url.searchParams.set("sortBy", sortBy);
                 url.searchParams.set("sortType", sortType);
             }
-
             const response = await axiosInstance.get(url);
-
+            console.log(`hello`,response);
+        
             return response.data.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
             throw error;
         }
     }
+  
+    
 );
+
+
 
 export const publishAvideo = createAsyncThunk("publishAvideo", async (data) => {
     const formData = new FormData();
@@ -121,6 +125,9 @@ export const togglePublishStatus = createAsyncThunk(
         }
     }
 );
+
+
+
 
 const videoSlice = createSlice({
     name: "video",

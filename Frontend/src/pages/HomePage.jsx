@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllVideos, makeVideosNull } from "../store/Slices/videoSlice";
-import { VideoList, Container, InfiniteScroll } from "../components";
 import HomeSkeleton from "../skeleton/HomeSkeleton";
+import Container from "../components/Container";
+import VideoList from '../components/VideoList'
+import InfiniteScroll from '../components/InfiniteScroll'
 
 function HomePage() {
     const dispatch = useDispatch();
@@ -12,12 +14,22 @@ function HomePage() {
         (state) => state.video?.videos?.hasNextPage
     );
     const [page, setPage] = useState(1);
+console.log(`Videos`, videos);
+
+
+
+
 
     useEffect(() => {
         dispatch(getAllVideos({}));
 
         return () => dispatch(makeVideosNull());
     }, [dispatch]);
+
+
+    useEffect(() => {
+        console.log("Fetched videos:", videos);
+    }, [videos]);
 
     const fetchMoreVideos = useCallback(() => {
         if (hasNextPage) {
