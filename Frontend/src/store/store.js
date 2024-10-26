@@ -7,7 +7,7 @@ import playlistSlice from './Slices/playlistSlice.js'
 import tweetSlice from "./Slices/tweetSlice.js";
 import dashboardSlice from "./Slices/dashboard.js";
 import videoSliceReducer from "./Slices/videoSlice.js";
-import subscriptionSlice from "./Slices/subscriptionSlice.js";
+import subscriptionSlice from "./Slices/subscripiton.js";
 
 
 const store = configureStore({

@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import { Search, Button, Logo, SearchForSmallScreen } from "../index.js";
 import { Link } from "react-router-dom";
-import {
-    IoCloseCircleOutline,
-    BiLike,
-    CiSearch,
-    HiOutlineVideoCamera,
-    SlMenu,
-} from "../icons.js";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import { BiLike } from "react-icons/bi";
+import { CiSearch } from "react-icons/ci";
+import { HiOutlineVideoCamera } from "react-icons/hi";
+import { SlMenu } from "react-icons/sl";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { IoMdLogOut } from "react-icons/io";

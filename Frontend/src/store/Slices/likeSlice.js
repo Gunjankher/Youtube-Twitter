@@ -76,3 +76,7 @@ const likeSlice = createSlice({
         }); 
     }
 })
+
+
+
+export default likeSlice.reducer
