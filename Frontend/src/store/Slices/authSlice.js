@@ -87,7 +87,7 @@ export const changePassword = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
     const response = await axiosInstance.get("/users/current-user");
-    return response.data.data;
+    return response.data?.data;
 });
 
 export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {

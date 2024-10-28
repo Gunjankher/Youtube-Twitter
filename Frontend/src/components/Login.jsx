@@ -2,7 +2,7 @@ import React from "react";
 import { Logo, Button, Input } from "./index";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUser, userLogin } from "../store/Slices/authSlice.js";
+import {userLogin,getCurrentUser} from '../store/Slices/authSlice.js'
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import LoginSkeleton from "../skeleton/loginSkeleton.jsx";
@@ -23,8 +23,8 @@ function Login() {
             ? { email: data.username, password: data.password }
             : data;
 
-        const response = await dispatch(userLogin(loginData));
-        const user = await dispatch(getCurrentUser());
+        const response =dispatch(userLogin(loginData));
+        const user = dispatch(getCurrentUser());
         if (user && response?.payload) {
             navigate("/");
         }
