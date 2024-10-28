@@ -9,9 +9,17 @@ import HomePage from './pages/HomePage';
 import AuthLayout from './components/AuthLayout'
 import Login from './components/Login';
 import SignUp from './components/Signup';
+import TermsAndConditions from './pages/TermsAndConditions'
 
 
 function App() {
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCurrentUser());
+    }, [dispatch]);
+
 
   return (
     <>
@@ -46,7 +54,14 @@ function App() {
                     }
                 />
 
-
+<Route
+                    path="/terms&conditions"
+                    element={
+                        <AuthLayout authentication>
+                            <TermsAndConditions />
+                        </AuthLayout>
+                    }
+                />
                  </Routes>
                  
             <Toaster

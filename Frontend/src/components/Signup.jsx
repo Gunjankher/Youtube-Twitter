@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import LoginSkeleton from "../skeleton/loginSkeleton.jsx";
 import GetImagePreview from "./GetImagePreview.jsx";
 
+
 function SignUp() {
     const {
         handleSubmit,

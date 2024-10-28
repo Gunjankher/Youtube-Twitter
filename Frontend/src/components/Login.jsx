@@ -23,8 +23,8 @@ function Login() {
             ? { email: data.username, password: data.password }
             : data;
 
-        const response =dispatch(userLogin(loginData));
-        const user = dispatch(getCurrentUser());
+        const response = await dispatch(userLogin(loginData));
+        const user = await dispatch(getCurrentUser());
         if (user && response?.payload) {
             navigate("/");
         }

@@ -184,6 +184,9 @@ const loginUser = asyncHandlar(async (req, res) => {
 });
 
 const logoutUser = asyncHandlar(async (req, res) => {
+  console.log("Cookies:", req.cookies);
+console.log("Authorization Header:", req.header("Authorization"));
+
   User.findByIdAndUpdate(
     req.user._id,
     {
