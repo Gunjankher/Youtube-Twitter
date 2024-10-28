@@ -7,10 +7,12 @@ import { getCurrentUser } from "./store/Slices/authSlice";
 import Layout from './Layout';
 import HomePage from './pages/HomePage';
 import AuthLayout from './components/AuthLayout'
+import Login from './components/Login';
+import SignUp from './components/Signup';
 
 
 function App() {
-  
+
   return (
     <>
    <Routes>
@@ -27,7 +29,22 @@ function App() {
                             </AuthLayout>
                         }
                     />
-
+ <Route
+                    path="/login"
+                    element={
+                        <AuthLayout authentication={false}>
+                            <Login />
+                        </AuthLayout>
+                    }
+                />
+                <Route
+                    path="/signup"
+                    element={
+                        <AuthLayout authentication={false}>
+                            <SignUp />
+                        </AuthLayout>
+                    }
+                />
 
 
                  </Routes>
