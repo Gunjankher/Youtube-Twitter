@@ -99,7 +99,7 @@ const registerUser = asyncHandlar(async (req, res) => {
   });
 
   const createdUser = await User.findById(user._id).select(
-    "-password -refreshToken",
+    "-password",
   );
 
   if (!createdUser) {
@@ -123,8 +123,6 @@ const loginUser = asyncHandlar(async (req, res) => {
 
   // (1) req data from body
 
-  
-  console.log("Request body:", req.body);
   const { email, username, password } = req.body;
   if (!(username || email)) {
     throw new ApiError(400, "username or email is required.");
@@ -184,8 +182,7 @@ const loginUser = asyncHandlar(async (req, res) => {
 });
 
 const logoutUser = asyncHandlar(async (req, res) => {
-  console.log("Cookies:", req.cookies);
-console.log("Authorization Header:", req.header("Authorization"));
+  
 
   User.findByIdAndUpdate(
     req.user._id,

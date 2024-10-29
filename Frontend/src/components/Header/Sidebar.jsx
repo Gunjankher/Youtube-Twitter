@@ -74,8 +74,12 @@ function Sidebar() {
     ];
 
     const logout = async () => {
-        await dispatch(userLogout());
-        navigate("/");
+        try {
+            await dispatch(userLogout()).unwrap(); // Wait for the logout action to complete
+            navigate("/"); // Redirect after successful logout
+        } catch (error) {
+            console.error("Logout failed", error);
+        }
     };
 
     return (
@@ -105,7 +109,7 @@ function Sidebar() {
                         {username && (
                             <div
                                 className="flex items-center gap-2 justify-center sm:justify-start hover:bg-purple-500 cursor-pointer py-1 px-2 border border-slate-600"
-                                onClick={() => logout()}
+                                onClick={logout}
                             >
                                 <IoMdLogOut size={25} />
                                 <span className="text-base hidden md:block">

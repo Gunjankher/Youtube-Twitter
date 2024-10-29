@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axiosInstance from "../../helpers/axiosInstance";
+import toast from 'react-hot-toast'
 
 
 const initialState = {
@@ -23,7 +24,12 @@ export const createAccount = createAsyncThunk("register", async (data) => {
         const response = await axiosInstance.post("/users/register", formData);
         console.log(response.data);
         toast.success("Registered successfully!!!");
-        return response.data;
+        // return response.data;
+        return {
+            user: response.data?.data?.user,
+            accessToken: response.data?.data?.accessToken,
+            refreshToken: response.data?.data?.refreshToken
+          };
     } catch (error) {
         toast.error(error?.response?.data?.error);
         throw error;
@@ -32,9 +38,19 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 
 export const userLogin = createAsyncThunk("login", async (data) => {
     try {
-        const response = await axiosInstance.post("/users/login", data);
+        const response = await axiosInstance.post("/users/login", data,{
+            withCredentials: true,
+            headers: {
+                Authorization: `Bearer ${data.accessToken}`
+            }
+        });
         console.log(`this is response`, response);
-        return response.data.data.user;
+        return {
+            user: response.data?.user,
+            accessToken: response.data?.accessToken,
+            refreshToken: response.data?.refreshToken
+          };
+    
         
     } catch (error) {
         toast.error(error?.response?.data?.error);
@@ -50,7 +66,7 @@ export const userLogout = createAsyncThunk("logout", async()=>{
         
         toast.success(response.data?.message);
 
-        return response.data;
+        return response.data?.data;
     } catch (error) {
         toast.error(error?.response?.data?.error);
         throw error;
@@ -152,8 +168,11 @@ const authSlice = createSlice({
         builder.addCase(createAccount.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(createAccount.fulfilled, (state) => {
+        builder.addCase(createAccount.fulfilled, (state,action) => {
             state.loading = false;
+            state.userData = action.payload;
+            state.accessToken = action.payload.accessToken;
+            state.refreshToken = action.payload.refreshToken;
         });
         builder.addCase(userLogin.pending, (state) => {
             state.loading = true;
@@ -162,6 +181,8 @@ const authSlice = createSlice({
             state.loading = false;
             state.status = true;
             state.userData = action.payload;
+            state.accessToken = action.payload.accessToken;
+            state.refreshToken = action.payload.refreshToken;
         });
         builder.addCase(userLogout.pending, (state) => {
             state.loading = true;
@@ -170,6 +191,12 @@ const authSlice = createSlice({
             state.loading = false;
             state.status = false;
             state.userData = null;
+            state.accessToken = null
+            state.refreshToken = null
+        });
+        builder.addCase(userLogout.rejected, (state, action) => {
+            state.loading = false;
+            state.error = action.payload || "Logout failed"; // Store error message if needed
         });
         builder.addCase(getCurrentUser.pending, (state) => {
             state.loading = true;
