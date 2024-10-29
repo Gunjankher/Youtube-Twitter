@@ -51,6 +51,14 @@ function App() {
                 }
             />
             <Route
+                        path="/history"
+                        element={
+                            <AuthLayout authentication>
+                                <History />
+                            </AuthLayout>
+                        }
+                    />
+            <Route
                 path="liked-videos"
                 element={
                     <AuthLayout authentication>
