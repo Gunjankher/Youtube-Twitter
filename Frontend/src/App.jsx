@@ -11,6 +11,8 @@ import Login from './components/Login';
 import SignUp from './components/Signup';
 import TermsAndConditions from './pages/TermsAndConditions'
 import LikedVideos from './pages/LikedVidoes';
+import History from './pages/History';
+
 
 
 function App() {
