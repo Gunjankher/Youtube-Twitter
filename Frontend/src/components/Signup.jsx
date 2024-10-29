@@ -20,22 +20,41 @@ function SignUp() {
     const dispatch = useDispatch();
     const loading = useSelector((state) => state.auth?.loading);
 
+    // const submit = async (data) => {
+    //     const response = await dispatch(createAccount(data));
+    //     if (response?.payload?.success) {
+    //         const username = data?.username;
+    //         const password = data?.password;
+    //         const loginResult = await dispatch(
+    //             userLogin({ username, password })
+    //         );
+
+    //         if (loginResult?.type === "login/fulfilled") {
+    //             navigate("/terms&conditions");
+    //         } else {
+    //             navigate("/login");
+    //         }
+    //     }
+    // };
+
     const submit = async (data) => {
         const response = await dispatch(createAccount(data));
         if (response?.payload?.success) {
-            const username = data?.username;
-            const password = data?.password;
-            const loginResult = await dispatch(
-                userLogin({ username, password })
-            );
-
-            if (loginResult?.type === "login/fulfilled") {
+            const { username, password } = data;
+            const loginResult = await dispatch(userLogin({ username, password }));
+    
+            // Use `meta.requestStatus` to check fulfillment
+            if (loginResult?.meta?.requestStatus === "fulfilled") {
                 navigate("/terms&conditions");
             } else {
+                console.error("Login failed after account creation.");
                 navigate("/login");
             }
+        } else {
+            console.error("Account creation unsuccessful.");
         }
     };
+    
 
     if (loading) {
         return <LoginSkeleton />;

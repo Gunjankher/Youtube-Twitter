@@ -22,14 +22,9 @@ export const createAccount = createAsyncThunk("register", async (data) => {
 
     try {
         const response = await axiosInstance.post("/users/register", formData);
-        console.log(response.data);
+        console.log(`create account data`,response.data);
         toast.success("Registered successfully!!!");
-        // return response.data;
-        return {
-            user: response.data?.data?.user,
-            accessToken: response.data?.data?.accessToken,
-            refreshToken: response.data?.data?.refreshToken
-          };
+        return{...response.data,success: true }
     } catch (error) {
         toast.error(error?.response?.data?.error);
         throw error;
@@ -46,9 +41,9 @@ export const userLogin = createAsyncThunk("login", async (data) => {
         });
         console.log(`this is response`, response);
         return {
-            user: response.data?.user,
-            accessToken: response.data?.accessToken,
-            refreshToken: response.data?.refreshToken
+            user: response.data?.data?.user,
+            accessToken: response.data?.data?.accessToken,
+            refreshToken: response.data?.data?.refreshToken
           };
     
         
@@ -168,11 +163,8 @@ const authSlice = createSlice({
         builder.addCase(createAccount.pending, (state) => {
             state.loading = true;
         });
-        builder.addCase(createAccount.fulfilled, (state,action) => {
+        builder.addCase(createAccount.fulfilled, (state) => {
             state.loading = false;
-            state.userData = action.payload;
-            state.accessToken = action.payload.accessToken;
-            state.refreshToken = action.payload.refreshToken;
         });
         builder.addCase(userLogin.pending, (state) => {
             state.loading = true;
