@@ -9,12 +9,12 @@ function TweetAndComment({ tweet, comment, videoId }) {
     const { register, handleSubmit, setValue } = useForm();
     const dispatch = useDispatch();
 
-    const sendContent = (data) => {
+    const sendContent =async (data) => {
         if (data) {
             if (tweet) {
-                dispatch(createTweet(data));
+                await dispatch(createTweet(data));
             } else if (comment) {
-                dispatch(createAComment({ content: data.content, videoId }));
+               await dispatch(createAComment({ content: data.content, videoId }));
             }
             setValue("content", "");
         }
