@@ -12,6 +12,13 @@ import SignUp from './components/Signup';
 import TermsAndConditions from './pages/TermsAndConditions'
 import LikedVideos from './pages/LikedVidoes';
 import History from './pages/History';
+import Channel from './pages/Channel/Channel';
+import ChannelVideos from './pages/Channel/ChannelVideos';
+import ChannelSubscribers from './pages/Channel/ChannelSubscribers'
+import ChannelPlaylist from './pages/Channel/ChannelPlaylist';
+import ChannelTweets from './pages/Channel/ChannelTweets';
+
+
 
 
 
@@ -76,6 +83,48 @@ function App() {
                     </AuthLayout>
                 }
             />
+<Route
+                        path="/channel/:username"
+                        element={
+                            <AuthLayout authentication>
+                                <Channel />
+                            </AuthLayout>
+                        }
+                    >
+                        <Route
+                            path="videos"
+                            element={
+                                <AuthLayout authentication>
+                                    <ChannelVideos />
+                                </AuthLayout>
+                            }
+                        />
+                        <Route
+                            path="playlists"
+                            element={
+                                <AuthLayout authentication>
+                                    <ChannelPlaylist />
+                                </AuthLayout>
+                            }
+                        />
+                        <Route
+                            path="tweets"
+                            element={
+                                <AuthLayout authentication>
+                                    <ChannelTweets />
+                                </AuthLayout>
+                            }
+                        />
+                        <Route
+                            path="subscribed"
+                            element={
+                                <AuthLayout authentication={false}>
+                                    <ChannelSubscribers />
+                                </AuthLayout>
+                            }
+                        />
+ </Route>
+
         </Route>
     </Routes>
 
