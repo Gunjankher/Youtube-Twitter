@@ -49,7 +49,9 @@ export const deleteTweet = createAsyncThunk("deleteTweet", async (tweetId) => {
 export const getUserTweets = createAsyncThunk( "getUserTweets", async (userId) => {
         try {
             const response = await axiosInstance.get(`/tweet/user/${userId}`);
-            return response.data.data;
+            console.log(`getting user tweets`, response);
+            
+            return response?.data?.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
             throw error;
@@ -70,9 +72,17 @@ const tweetSlice = createSlice({
             state.loading = false;
             state.tweets = action.payload;
         });
-        builder.addCase(createTweet.fulfilled, (state, action) => {
+        builder
+        .addCase(createTweet.pending, (state) => {
+            state.loading = true;
+        })
+        .addCase(createTweet.fulfilled, (state, action) => {
+            state.loading = false;
             state.tweets.unshift(action.payload);
         })
+        .addCase(createTweet.rejected, (state) => {
+            state.loading = false;
+        });
         builder.addCase(deleteTweet.fulfilled, (state, action) => {
             state.tweets = state.tweets.filter((tweet) => tweet._id !== action.payload);
         })
