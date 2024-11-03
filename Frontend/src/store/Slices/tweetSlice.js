@@ -10,6 +10,8 @@ const initialState = {
 export const createTweet = createAsyncThunk("createTweet", async (content) => {
     try {
         const response = await axiosInstance.post("/tweet", content);
+        console.log(`this is create tweet`,response);
+        
         toast.success(response.data?.message);
         return response.data.data;
     } catch (error) {

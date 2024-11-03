@@ -17,6 +17,15 @@ import ChannelVideos from './pages/Channel/ChannelVideos';
 import ChannelSubscribers from './pages/Channel/ChannelSubscribers'
 import ChannelPlaylist from './pages/Channel/ChannelPlaylist';
 import ChannelTweets from './pages/Channel/ChannelTweets';
+import AdminDashboard from './pages/AdminDashboard';
+import EditChannel from './pages/EditChannel';
+import EditPersonalInfo from './components/EditPersonalInfo';
+import ChangePassword from './components/ChangePassword';
+import VideoDetail from './pages/VideoDetail';
+import MySubscriptions from './pages/MySubscription';
+
+
+
 
 
 
@@ -60,13 +69,13 @@ function App() {
                 }
             />
             <Route
-                        path="/history"
-                        element={
-                            <AuthLayout authentication>
-                                <History />
-                            </AuthLayout>
-                        }
-                    />
+                path="history"
+                element={
+                    <AuthLayout authentication>
+                        <History />
+                    </AuthLayout>
+                }
+            />
             <Route
                 path="liked-videos"
                 element={
@@ -83,49 +92,104 @@ function App() {
                     </AuthLayout>
                 }
             />
-<Route
-                        path="/channel/:username"
+            <Route
+                path="channel/:username"
+                element={
+                    <AuthLayout authentication>
+                        <Channel />
+                    </AuthLayout>
+                }
+            >
+                <Route
+                    path="videos"
+                    element={
+                        <AuthLayout authentication>
+                            <ChannelVideos />
+                        </AuthLayout>
+                    }
+                />
+                <Route
+                    path="playlists"
+                    element={
+                        <AuthLayout authentication>
+                            <ChannelPlaylist />
+                        </AuthLayout>
+                    }
+                />
+                <Route
+                    path="tweets"
+                    element={
+                        <AuthLayout authentication>
+                            <ChannelTweets />
+                        </AuthLayout>
+                    }
+                />
+                <Route
+                    path="subscribed"
+                    element={
+                        <AuthLayout authentication={false}>
+                            <ChannelSubscribers />
+                        </AuthLayout>
+                    }
+                />
+            </Route>
+
+            {/* Move /collections route here, outside of the /channel/:username nested routes */}
+            <Route
+                path="collections"
+                element={
+                    <AuthLayout authentication>
+                        <AdminDashboard />
+                    </AuthLayout>
+                }
+            />
+        </Route>
+
+        <Route
+                        path="/edit"
                         element={
                             <AuthLayout authentication>
-                                <Channel />
+                                <EditChannel />
                             </AuthLayout>
                         }
                     >
-                        <Route
-                            path="videos"
-                            element={
-                                <AuthLayout authentication>
-                                    <ChannelVideos />
-                                </AuthLayout>
-                            }
-                        />
-                        <Route
-                            path="playlists"
-                            element={
-                                <AuthLayout authentication>
-                                    <ChannelPlaylist />
-                                </AuthLayout>
-                            }
-                        />
-                        <Route
-                            path="tweets"
-                            element={
-                                <AuthLayout authentication>
-                                    <ChannelTweets />
-                                </AuthLayout>
-                            }
-                        />
-                        <Route
-                            path="subscribed"
-                            element={
-                                <AuthLayout authentication={false}>
-                                    <ChannelSubscribers />
-                                </AuthLayout>
-                            }
-                        />
- </Route>
 
-        </Route>
+<Route
+                            path="personalInfo"
+                            element={
+                                <AuthLayout authentication>
+                                    <EditPersonalInfo />
+                                </AuthLayout>
+                            }
+                        />
+                        <Route
+                            path="password"
+                            element={
+                                <AuthLayout authentication>
+                                    <ChangePassword />
+                                </AuthLayout>
+                            }
+                        />
+                          </Route>
+
+
+                          <Route
+                    path="/watch/:videoId"
+                    element={
+                        <AuthLayout authentication>
+                            <VideoDetail />
+                        </AuthLayout>
+                    }
+                />
+                 <Route
+                        path="/subscriptions"
+                        element={
+                            <AuthLayout authentication>
+                                <MySubscriptions />
+                            </AuthLayout>
+                        }
+                    />
+
     </Routes>
 
     <Toaster

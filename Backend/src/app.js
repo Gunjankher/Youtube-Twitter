@@ -40,7 +40,7 @@ app.use("/api/v1/comment", commentRouter)
 app.use("/api/v1/tweet", tweetRouter)
 app.use("/api/v1/playlist",playlistRouter)
 app.use("/api/v1/healthcheck",healthRouter)
-app.use("/api/v1/subscription",subscripitonRouter)
+app.use("/api/v1/subscriptions",subscripitonRouter)
 app.use("/api/v1/dashboard",dashboardRouter)
 
 

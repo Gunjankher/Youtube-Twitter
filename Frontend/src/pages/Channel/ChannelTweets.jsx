@@ -9,10 +9,13 @@ function ChannelTweets() {
     const userId = useSelector((state) => state.user?.profileData?._id);
     const tweets = useSelector((state) => state.tweet?.tweets);
 
+    console.log(`tweets`,tweets);
+    
+
     // useEffect(() => {
     //     if (userId) dispatch(getUserTweets(userId));
     // }, [dispatch, userId]);
-    
+
     useEffect(() => {
         const fetchTweets = async () => {
             if (userId) {
