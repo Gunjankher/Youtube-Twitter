@@ -69,6 +69,8 @@ export const getVideoComments = createAsyncThunk(
 
         try {
             const response = await axiosInstance.get(url);
+            console.log(`this is tweet Data`, response);
+            
             return response.data.data;
         } catch (error) {
             toast.error(error?.response?.data?.error);
