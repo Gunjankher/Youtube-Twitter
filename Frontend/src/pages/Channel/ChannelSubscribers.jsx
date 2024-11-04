@@ -26,7 +26,7 @@ function ChannelSubscribers() {
                 >
                     <div className="flex gap-3 items-center">
                         <Avatar
-                            src={subscriber?.subscriber?.avatar.url}
+                            src={subscriber?.subscriber?.avatar}
                             channelName={subscriber?.subscriber?.username}
                         />
                         <div>
