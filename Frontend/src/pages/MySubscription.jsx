@@ -9,6 +9,9 @@ function MySubscriptions() {
     const subscriptions = useSelector(
         (state) => state.subscription?.mySubscriptions
     );
+
+    console.log(`this is subscription`, subscriptions);
+    
     const subscriberId = useSelector((state) => state.auth?.userData?._id);
     useEffect(() => {
         if (subscriptions) {
@@ -27,7 +30,7 @@ function MySubscriptions() {
                         className="flex flex-col items-center overflow-x-scroll"
                     >
                         <Avatar
-                            src={subscription?.subscribedChannel?.avatar?.url}
+                            src={subscription?.subscribedChannel?.avatar}
                             channelName={
                                 subscription?.subscribedChannel?.username
                             }

@@ -14,7 +14,7 @@ export const userChannelProfile = createAsyncThunk(
     async(username)=>{
         try {
          const response =  await axiosInstance.get(`/users/c/${username}`)
-          console.log(response);
+        //   console.log(response);
           return response.data?.data  
         } catch (error) {
             toast.error(error?.response?.data?.error)

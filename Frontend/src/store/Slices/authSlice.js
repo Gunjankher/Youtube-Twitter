@@ -103,13 +103,15 @@ export const changePassword = createAsyncThunk(
 
 export const getCurrentUser = createAsyncThunk("getCurrentUser", async () => {
     const response = await axiosInstance.get("/users/current-user");
+    // console.log(`this is currebt user res`, response);
+    
     return response.data?.data;
 });
 
 export const updateAvatar = createAsyncThunk("updateAvatar", async (avatar) => {
     try {
         const response = await axiosInstance.patch(
-            "/users/update-avatar",
+            "/users/avatar",
             avatar
         );
         toast.success("Updated details successfully!!!");

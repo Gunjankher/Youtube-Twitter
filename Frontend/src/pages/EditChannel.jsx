@@ -7,6 +7,8 @@ function EditChannel() {
     const channel = useSelector((state) => state.auth?.userData);
     const loading = useSelector((state) => state.auth?.loading);
     window.scrollTo(0, 0);
+    console.log(`this is channel`, channel);
+    
     return (
         <>
             {loading && (
@@ -24,7 +26,7 @@ function EditChannel() {
                 <ChannelHeader
                     username={channel?.username}
                     coverImage={channel?.coverImage?.url}
-                    avatar={channel?.avatar?.url}
+                    avatar={channel?.avatar}
                     subscribedCount={channel?.channelsSubscribedToCount}
                     fullName={channel?.fullName}
                     subscribersCount={channel?.subcribersCount}

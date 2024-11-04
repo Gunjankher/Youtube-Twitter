@@ -347,7 +347,7 @@ if (!avatar.url) {
   {
     avatar: avatar.url
   },{new : true}
-).select(password)
+).select("-password")
 
 return res
 .status(200)
