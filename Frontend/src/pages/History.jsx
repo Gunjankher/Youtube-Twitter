@@ -8,6 +8,8 @@ function History() {
     const loading = useSelector((state) => state.user?.loading);
     const videos = useSelector((state) => state.user?.history);
     const dispatch = useDispatch();
+    console.log(`history Videos`,videos);
+    
 
     useEffect(() => {
         window.scrollTo(0, 0); // Move scrollTo inside useEffect

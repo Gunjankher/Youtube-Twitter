@@ -9,6 +9,8 @@ function LikedVideos() {
     const dispatch = useDispatch();
     const likedVideos = useSelector((state) => state.like?.likedVideos);
     const loading = useSelector((state) => state.like.loading);
+    console.log(`liked vid`, likedVideos);
+    
     window.scrollTo(0, 0);
     useEffect(() => {
         dispatch(getLikedVideos());
