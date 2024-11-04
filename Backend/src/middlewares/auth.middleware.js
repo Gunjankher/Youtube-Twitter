@@ -30,7 +30,7 @@ try {
     
       req.user = user
       next()
-      // console.log(req.user);
+      console.log(`this is user in auth`,req.user);
       
     
 } catch (error) {
