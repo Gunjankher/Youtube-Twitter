@@ -123,7 +123,7 @@ const getUserChannelSubscribers = asyncHandlar(async(req,res)=>{
                     _id: 1,
                     username: 1,
                     fullName: 1,
-                    "avatar.url": 1,
+                    "avatar": 1,
                     subscribedToSubscriber: 1,
                     subscribersCount: 1,
                 },

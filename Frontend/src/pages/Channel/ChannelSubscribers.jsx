@@ -11,6 +11,8 @@ function ChannelSubscribers() {
         (state) => state.subscription.channelSubscribers
     );
 
+    console.log(`subscribers`,subscribers);
+    
     useEffect(() => {
         if (channelId) {
             dispatch(getUserChannelSubscribers(channelId));

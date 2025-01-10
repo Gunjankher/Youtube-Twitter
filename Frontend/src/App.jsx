@@ -22,7 +22,9 @@ import EditChannel from './pages/EditChannel';
 import EditPersonalInfo from './components/EditPersonalInfo';
 import ChangePassword from './components/ChangePassword';
 import VideoDetail from './pages/VideoDetail';
-import MySubscriptions from './pages/MySubscription';
+import MySubscriptions from './pages/MySubscription'
+import SearchVideos from './pages/SearchVideos';
+
 
 
 
@@ -44,6 +46,7 @@ function App() {
     <>
     <Routes>
         <Route path="/" element={<Layout />}>
+            {/* Public Routes */}
             <Route
                 index
                 element={
@@ -69,6 +72,24 @@ function App() {
                 }
             />
             <Route
+                path="terms&conditions"
+                element={
+                    <AuthLayout authentication={false}>
+                        <TermsAndConditions />
+                    </AuthLayout>
+                }
+            />
+            <Route
+                path="search/:query"
+                element={
+                    <AuthLayout authentication={false}>
+                        <SearchVideos />
+                    </AuthLayout>
+                }
+            />
+
+            {/* Protected Routes */}
+            <Route
                 path="history"
                 element={
                     <AuthLayout authentication>
@@ -85,13 +106,31 @@ function App() {
                 }
             />
             <Route
-                path="terms&conditions"
+                path="subscriptions"
                 element={
                     <AuthLayout authentication>
-                        <TermsAndConditions />
+                        <MySubscriptions />
                     </AuthLayout>
                 }
             />
+            <Route
+                path="collections"
+                element={
+                    <AuthLayout authentication>
+                        <AdminDashboard />
+                    </AuthLayout>
+                }
+            />
+            <Route
+                path="watch/:videoId"
+                element={
+                    <AuthLayout authentication>
+                        <VideoDetail />
+                    </AuthLayout>
+                }
+            />
+
+            {/* Channel Routes with Nested Routes */}
             <Route
                 path="channel/:username"
                 element={
@@ -134,74 +173,41 @@ function App() {
                 />
             </Route>
 
-            {/* Move /collections route here, outside of the /channel/:username nested routes */}
+            {/* Edit Channel Routes with Nested Personal Info and Password Routes */}
             <Route
-                path="collections"
+                path="edit"
                 element={
                     <AuthLayout authentication>
-                        <AdminDashboard />
+                        <EditChannel />
                     </AuthLayout>
                 }
-            />
-        </Route>
-
-        <Route
-                        path="/edit"
-                        element={
-                            <AuthLayout authentication>
-                                <EditChannel />
-                            </AuthLayout>
-                        }
-                    >
-
-<Route
-                            path="personalInfo"
-                            element={
-                                <AuthLayout authentication>
-                                    <EditPersonalInfo />
-                                </AuthLayout>
-                            }
-                        />
-                        <Route
-                            path="password"
-                            element={
-                                <AuthLayout authentication>
-                                    <ChangePassword />
-                                </AuthLayout>
-                            }
-                        />
-                          </Route>
-
-
-                          <Route
-                    path="/watch/:videoId"
+            >
+                <Route
+                    path="personalInfo"
                     element={
                         <AuthLayout authentication>
-                            <VideoDetail />
+                            <EditPersonalInfo />
                         </AuthLayout>
                     }
                 />
-                 <Route
-                        path="/subscriptions"
-                        element={
-                            <AuthLayout authentication>
-                                <MySubscriptions />
-                            </AuthLayout>
-                        }
-                    />
-
+                <Route
+                    path="password"
+                    element={
+                        <AuthLayout authentication>
+                            <ChangePassword />
+                        </AuthLayout>
+                    }
+                />
+            </Route>
+        </Route>
     </Routes>
 
     <Toaster
         position="top-right"
         reverseOrder={true}
         toastOptions={{
-            error: {
-                style: { borderRadius: "0", color: "red" },
-            },
-            success: {
-                style: { borderRadius: "0", color: "green" },
-            },
+            error: { style: { borderRadius: "0", color: "red" } },
+            success: { style: { borderRadius: "0", color: "green" } },
             duration: 2000,
         }}
     />
