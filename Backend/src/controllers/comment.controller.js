@@ -181,7 +181,7 @@ const getVideoComments = asyncHandlar(async (req, res) => {
       .json(new ApiResponse(200, comments, "Comments fetched successfully"));
 });
 
-const addComment = asyncHandlar(async (req, res) => {
+const  addComment = asyncHandlar(async (req, res) => {
   // get videoId and get req.body
   // find the video and check if video is there
   // then create comment

@@ -20,6 +20,7 @@ const getAllVideos = asyncHandlar(async (req, res) => {
     // Field mappings specify which fields within your documents should be indexed for text search.
     // this helps in seraching only in title, desc providing faster search results
     // here the name of search index is 'search-videos'
+    
     if (query) {
         pipeline.push({
             $search: {
