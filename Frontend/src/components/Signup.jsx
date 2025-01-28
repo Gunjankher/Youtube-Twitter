@@ -190,7 +190,7 @@ function SignUp() {
                         <Button
                             type="submit"
                             bgColor="bg-purple-500"
-                            className="w-full sm:py-3 py-2 hover:bg-purple-700 text-lg"
+                            className="w-full sm:py-3 py-2 hover:bg-purple-700 text-lg text-white"
                         >
                             Signup
                         </Button>

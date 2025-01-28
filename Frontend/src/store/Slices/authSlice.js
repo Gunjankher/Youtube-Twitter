@@ -205,6 +205,7 @@ const authSlice = createSlice({
             state.status = false;
             state.userData = null;
         });
+        
         builder.addCase(updateAvatar.pending, (state) => {
             state.loading = true;
         });
