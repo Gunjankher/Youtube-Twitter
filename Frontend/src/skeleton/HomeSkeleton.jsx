@@ -5,6 +5,8 @@ function HomeSkeleton() {
     return (
         <>
             <div className="w-full grid xl:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5">
+
+                
                 <div className={`${loadingSkeletonStyle} h-56 relative`}>
                     <div className="absolute bottom-1 border-slate-500 h-12 w-full border-t p-2">
                         <div className="absolute bottom-1 w-8 h-8 animate-pulse bg-gray-500 rounded-full space-y-2"></div>
