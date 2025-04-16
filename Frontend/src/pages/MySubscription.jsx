@@ -22,7 +22,6 @@ function MySubscriptions() {
     
     return (
         <>
-        <Navbar/>
             <div className="flex gap-2 p-2 text-white items-center bg-[#222222]">
                 {subscriptions?.map((subscription) => (
                     <div
