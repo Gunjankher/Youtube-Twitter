@@ -3,7 +3,7 @@ import { Button, Input2, UploadingVideo } from "./index";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { publishAvideo } from "../store/Slices/videoSlice";
-import { IoCloseCircleOutline } from "./icons";
+import { IoCloseCircleOutline } from "./Icons.jsx";
 import GetImagePreview from "./GetImagePreview";
 
 function UploadVideo({ setUploadVideoPopup }) {
