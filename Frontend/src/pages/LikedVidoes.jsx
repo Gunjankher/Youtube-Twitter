@@ -19,7 +19,7 @@ function LikedVideos() {
     }, [dispatch]);
 
     if (loading) {
-        return <HomeSkeleton />;
+        return <HomeSkeleton />
     }
 
     if (likedVideos?.length == 0) {
