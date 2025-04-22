@@ -6,10 +6,21 @@ import cors from 'cors'
 const app = express()
 
 
-app.use(cors({
-    origin :'https:youtube-frontend-olive.vercel.app',
-    credentials:true
-}))
+const allowedOrigins = [
+    'http://localhost:5174',
+    'https://youtube-frontend-olive.vercel.app',
+  ];
+  
+  app.use(cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  }));
 
 
 app.use(express.json({limit:"16kb"}))
