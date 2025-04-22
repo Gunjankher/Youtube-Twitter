@@ -1,10 +1,20 @@
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import cors from 'cors'
+import helmet from 'helmet'
 
 
 const app = express()
 
+
+app.use(helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'none'"], // Deny all by default
+      scriptSrc: ["'self'", "blob:"], // Allow scripts from the same origin and blob URLs
+      objectSrc: ["'none'"], // Disallow <object> tags (this could be adjusted depending on your needs)
+      // Add any other directives your app needs (styles, images, etc.)
+    },
+  }));
 
 const allowedOrigins = [
     'http://localhost:5174',
