@@ -10,11 +10,15 @@ const app = express()
 app.use(helmet.contentSecurityPolicy({
     directives: {
       defaultSrc: ["'none'"], // Deny all by default
-      scriptSrc: ["'self'", "blob:"], // Allow scripts from the same origin and blob URLs
-      objectSrc: ["'none'"], // Disallow <object> tags (this could be adjusted depending on your needs)
-      // Add any other directives your app needs (styles, images, etc.)
+      scriptSrc: ["'self'", "blob:", "https://youtube-twitter-g9pj.onrender.com"], // Allow scripts from self, blob, and your backend
+      styleSrc: ["'self'", "https://fonts.googleapis.com"], // Allow styles from self and Google Fonts
+      fontSrc: ["'self'", "https://fonts.gstatic.com"], // Allow fonts from Google Fonts
+      objectSrc: ["'none'"], // Disallow <object> tags (adjust this as needed)
+      imgSrc: ["'self'", "https://images.unsplash.com"], // Allow images from self and external image sources
+      connectSrc: ["'self'", "https://youtube-twitter-g9pj.onrender.com"], // Allow API requests to the same backend
     },
   }));
+  
 
 const allowedOrigins = [
     'http://localhost:5174',
