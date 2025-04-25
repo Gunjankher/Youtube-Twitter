@@ -23,6 +23,7 @@ app.use(helmet.contentSecurityPolicy({
 const allowedOrigins = [
     'http://localhost:5174',
     'https://youtube-frontend-olive.vercel.app',
+    'https://youtube-twitter-iz8k.onrender.com'
   ];
   
   app.use(cors({
