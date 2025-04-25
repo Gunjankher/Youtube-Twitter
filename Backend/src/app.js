@@ -15,7 +15,7 @@ app.use(helmet.contentSecurityPolicy({
       fontSrc: ["'self'", "https://fonts.gstatic.com"], // Allow fonts from Google Fonts
       objectSrc: ["'none'"], // Disallow <object> tags (adjust this as needed)
       imgSrc: ["'self'", "https://images.unsplash.com"], // Allow images from self and external image sources
-      connectSrc: ["'self'", "https://youtube-twitter-g9pj.onrender.com"], // Allow API requests to the same backend
+      connectSrc: ["'self'", "blob:", "https://youtube-frontend-olive.vercel.app", "https://youtube-twitter-g9pj.onrender.com"],
     },
   }));
   
