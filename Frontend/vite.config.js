@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server:{
     proxy:{
-      '/api':'https://youtube-twitter-iz8k.onrender.com/api/v1'
+      '/api':'http://localhost:7000/api/v1'
     }
   }
 })
