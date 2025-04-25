@@ -160,7 +160,8 @@ const loginUser = asyncHandlar(async (req, res) => {
 
   const options = {
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production", // ✅ true only in prod
+    sameSite: "none", // ✅ allows cross-origin cookies
   };
 
   return res
